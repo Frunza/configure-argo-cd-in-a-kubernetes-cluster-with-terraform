@@ -133,7 +133,7 @@ resource "kubectl_manifest" "argocdInstallYaml" {
 
 Let's also create the `Argo CD` `yaml` file:
  ```sh
- ARGOCD_VERSION="v2.8.4"
+ARGOCD_VERSION="v2.8.4"
 curl -o "./terraform/resources/k8s/argocd/argocd.${ARGOCD_VERSION}.yaml" "https://raw.githubusercontent.com/argoproj/argo-cd/${ARGOCD_VERSION}/manifests/install.yaml"
 ```
 
