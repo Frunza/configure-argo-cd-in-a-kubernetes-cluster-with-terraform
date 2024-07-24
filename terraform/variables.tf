@@ -1,0 +1,3 @@
+variable "argocdVersion" {
+  type = string
+}

@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-infrastructure-nginx
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://GITLAB_USERNAME:GITLAB_TOKEN@git.my-company.com/my-repository.git
+    targetRevision: HEAD
+    path: ingress-nginx
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ingress-nginx
+    createNamespace: true
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

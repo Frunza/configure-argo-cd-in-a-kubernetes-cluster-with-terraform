@@ -1,0 +1,1 @@
+argocdVersion  = "ARGOCD_VERSION"

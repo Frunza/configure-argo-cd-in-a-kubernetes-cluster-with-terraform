@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  mainservice:
+    image: terraformargocd
+    network_mode: host
+    working_dir: /infrastructure
+    environment:
+      - TF_HTTP_USERNAME=${TF_HTTP_USERNAME}
+      - TF_HTTP_PASSWORD=${TF_HTTP_PASSWORD}
+      - GITLAB_TOKEN=${GITLAB_TOKEN}
+      - GITLAB_USERNAME=${GITLAB_USERNAME}
+    entrypoint: ["sh", "-c"]
+    command: [
+      "sh scripts/buildArgoCD.sh && \
+       sh scripts/updateArgoRepoCredentials.sh && \
+       (cd terraform && terraform init && terraform validate && terraform apply -auto-approve)"
+    ]
